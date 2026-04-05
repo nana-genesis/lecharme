@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Le Charme | Restaurante de Alta Gastronomia</title>
+    <!-- Google Fonts para tipografia elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (icones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: 'Montserrat', sans-serif;
+            color: #f0ede8;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Estilo geral da tipografia */
+        h1, h2, h3, h4, .logo, .nav-links a, .btn, .section-title, .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #c7a55b;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout e containers */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* HEADER com vidro e elegância */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(199, 165, 91, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #f0ede8;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #c7a55b;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #f0ede8;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #c7a55b;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #f0ede8;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/2609224/pexels-photo-2609224.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            animation: fadeUp 1.2s ease;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeUp 1.2s ease 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            border: 1.5px solid #c7a55b;
+            color: #c7a55b;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            margin-top: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn:hover {
+            background: #c7a55b;
+            color: #0a0a0a;
+            border-color: #c7a55b;
+            transform: scale(1.02);
+        }
+
+        /* Seções gerais */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid rgba(199, 165, 91, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 2px;
+            background: #c7a55b;
+            margin: 1rem auto 3rem auto;
+        }
+
+        /* Cards do cardápio - grid elegante */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .menu-card {
+            background: #111111;
+            padding: 1.5rem;
+            border-radius: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            border-color: #c7a55b50;
+        }
+
+        .menu-icon {
+            font-size: 2.5rem;
+            color: #c7a55b;
+            margin-bottom: 1rem;
+        }
+
+        .menu-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card p {
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #c7a55b;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Sobre - Estilo refinado */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text p {
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+        .about-img {
+            flex: 1;
+            background: url('https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+            min-height: 400px;
+            border-radius: 2px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Galeria */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(20%) brightness(0.8);
+            transition: all 0.5s;
+            border-radius: 2px;
+        }
+        .gallery-item:hover {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.02);
+        }
+
+        /* Depoimentos */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: #111;
+            padding: 2rem;
+            border-left: 3px solid #c7a55b;
+            font-style: italic;
+        }
+        .testimonial-card i {
+            color: #c7a55b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .testimonial-card p {
+            font-weight: 300;
+            line-height: 1.5;
+        }
+        .client-name {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 500;
+            color: #c7a55b;
+        }
+
+        /* Reservas - Formulário elegante */
+        .reserve-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #0e0e0e;
+            padding: 2.5rem;
+            border: 1px solid #2a2a2a;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #f0ede8;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #c7a55b;
+        }
+        .btn-submit {
+            width: 100%;
+            background: #c7a55b;
+            border: none;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0a0a0a;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+        }
+        .btn-submit:hover {
+            background: #b48c42;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 3rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid #1f1f1f;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-weight: 300;
+        }
+        .social-links a {
+            color: #f0ede8;
+            font-size: 1.5rem;
+            margin: 0 0.8rem;
+            transition: 0.3s;
+        }
+        .social-links a:hover {
+            color: #c7a55b;
+        }
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* Animações */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 1rem 0;
+            }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 75px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 75px);
+                background: rgba(0,0,0,0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: 0.4s;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-img {
+                width: 100%;
+                min-height: 300px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Le <span>Charme</span></a>
+                <div class="menu-icon" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#menu">Cardápio</a></li>
+                    <li><a href="#about">História</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                    <li><a href="#reservations">Reservas</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Le Charme</h1>
+                <p>Culinária Francesa & Experiência Sensorial</p>
+                <a href="#reservations" class="btn">Reserve sua Mesa</a>
+            </div>
+        </section>
+
+        <!-- Menu / Especialidades -->
+        <section id="menu">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Sabores Exclusivos</div>
+                    <h2>Nosso Cardápio</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Entradas</h3>
+                        <p>Foie Gras, Ostras Gratinadas, Trufa Negra</p>
+                        <span class="price">€28 - €45</span>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-fish"></i></div>
+                        <h3>Préparations Marines</h3>
+                        <p>Lagosta Thermidor, Salmão Selvagem, Ceviche de Vieiras</p>
+                        <span class="price">€49 - €78</span>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-drumstick-bite"></i></div>
+                        <h3>Carnes & Caça</h3>
+                        <p>Filet Mignon ao Vinho Tinto, Pato Confit, Cordeiro de Paulilac</p>
+                        <span class="price">€52 - €89</span>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                        <h3>Seleção de Vinhos</h3>
+                        <p>Bordeaux, Borgonha, Champagne Dom Pérignon</p>
+                        <span class="price">€35 / taça</span>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-cheese"></i></div>
+                        <h3>Queijos Finos</h3>
+                        <p>Brie de Meaux, Roquefort, Camembert trufado</p>
+                        <span class="price">€22</span>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-icon"><i class="fas fa-cake"></i></div>
+                        <h3>Sobremesas</h3>
+                        <p>Crème Brûlée, Soufflé ao Chocolate, Tarte Tatin</p>
+                        <span class="price">€16 - €24</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre / História -->
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Notre Histoire</div>
+                    <h2>Elegância & Tradição</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Fundado em 1987 por René Dumont, o Le Charme nasceu do desejo de trazer a alta gastronomia francesa para um ambiente acolhedor e sofisticado. Com ingredientes frescos e técnicas refinadas, nosso restaurante tornou-se referência em experiências sensoriais únicas.</p>
+                        <p>Nosso chef, Pierre Laurent, eleito "Chef do Ano" por três vezes consecutivas, reinventa clássicos com toques contemporâneos, sempre respeitando a sazonalidade e a origem dos produtos. Cada prato é uma obra de arte, servido em louças exclusivas e harmonizado com vinhos de pequenos produtores.</p>
+                        <p>O ambiente inspirado nos bistrôs parisienses do século XIX, com lustres de cristal, iluminação intimista e música ao vivo ao piano, proporciona noites inesquecíveis.</p>
+                        <a href="#reservations" class="btn" style="margin-top:1rem;">Viver essa Experiência</a>
+                    </div>
+                    <div class="about-img"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria Fotográfica -->
+        <section id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Olhares</div>
+                    <h2>Galeria de Momentos</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/2609224/pexels-photo-2609224.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                    <div class="gallery-item" style="background-image: url('https://images.pexels.com/photos/1333927/pexels-photo-1333927.jpeg?auto=compress&cs=tinysrgb&w=600');"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Vozes dos Convidados</div>
+                    <h2>O que dizem sobre nós</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Uma experiência transcendental. O atendimento impecável e a explosão de sabores no foie gras com geleia de vinho do porto me transportaram para a Borgonha. Voltarei muitas vezes!"</p>
+                        <div class="client-name">— Isabella R., Crítica Gastronômica</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Ambiente refinado e acolhedor. O serviço é discreto e atencioso. O filé mignon estava divino, ponto perfeito. Recomendo o pairing de vinhos. Nota mil."</p>
+                        <div class="client-name">— Eduardo M., Empresário</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Celebramos nosso aniversário de casamento no Le Charme. Foi mágico: música ao vivo, vista encantadora e sobremesa exclusiva com mensagem especial. Inesquecível."</p>
+                        <div class="client-name">— Clara & Felipe S.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservas -->
+        <section id="reservations">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Garanta seu lugar</div>
+                    <h2>Faça sua Reserva</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="reserve-form">
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nome Completo" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="E-mail" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" id="time" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="guests">
+                                <option value="2">2 pessoas</option>
+                                <option value="3">3 pessoas</option>
+                                <option value="4">4 pessoas</option>
+                                <option value="5">5 pessoas</option>
+                                <option value="6">6+ pessoas (consultar)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="3" placeholder="Pedidos especiais ou ocasião (aniversário, etc)"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">SOLICITAR RESERVA</button>
+                    </form>
+                    <p style="text-align:center; margin-top:1rem; font-size:0.8rem; opacity:0.7;">* Nossa equipe confirmará a disponibilidade em até 2h.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato & Localização -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <div class="section-subtitle">Visite-nos</div>
+                    <h2>Contato & Localização</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+                    <div style="flex:1; min-width: 200px;">
+                        <h3 style="font-size:1.8rem; margin-bottom: 1rem;">Le Charme</h3>
+                        <p><i class="fas fa-map-marker-alt" style="color:#c7a55b; width:25px;"></i> Av. Beira Mar, 777 - Centro, Rio de Janeiro/RJ</p>
+                        <p><i class="fas fa-phone-alt" style="color:#c7a55b;"></i> +55 (21) 3456-7890</p>
+                        <p><i class="fas fa-envelope" style="color:#c7a55b;"></i> contato@lecharme.com.br</p>
+                        <p><i class="fas fa-clock"></i> Terça a Domingo: 19h às 00h</p>
+                    </div>
+                    <div style="flex:1; min-width: 200px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.688525446422!2d-43.1783339!3d-22.9087776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f607c0a5e5d%3A0x8b3f15bae3e1d8e4!2sAv.%20Beira%20Mar%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1652452567890!5m2!1spt-BR!2sbr" width="100%" height="220" style="border:0; border-radius:4px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="logo" style="font-size:1.6rem;">Le <span>Charme</span></h3>
+                    <p>Alta gastronomia e alma francesa</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Le Charme Restaurante. Todos os direitos reservados. | Design sofisticado.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Formulário de reserva (simples alerta para demonstração)
+        const form = document.getElementById('bookingForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            if(name && date && time) {
+                alert(`Obrigado(a) ${name}, sua reserva para ${date} às ${time} foi solicitada! Em breve nossa equipe entrará em contato.`);
+                form.reset();
+            } else {
+                alert('Por favor, preencha nome, data e horário para reserva.');
+            }
+        });
+
+        // Scroll suave para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if(target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 50) {
+                header.style.background = 'rgba(5, 5, 5, 0.9)';
+                header.style.backdropFilter = 'blur(16px)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.75)';
+            }
+        });
+    </script>
+</body>
+</html>
